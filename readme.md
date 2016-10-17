@@ -58,4 +58,14 @@ You should see
 or similar.
 
 
-Go to http://127.0.0.1:5000/ to see our site
+Go to http://127.0.0.1:5000/ to see our site.
+
+## Change the message
+
+Change 
+
+        def hello():
+            return "Hello Internet!"
+
+to return something else. Save the file and reload in the browser. The message in your browser should say whatever you put there.
+
