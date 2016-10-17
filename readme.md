@@ -69,3 +69,19 @@ Change
 
 to return something else. Save the file and reload in the browser. The message in your browser should say whatever you put there.
 
+## Add another route.
+
+How do you think you'd add another route?
+
+It turns out to be about what you'd guess
+
+        @app.route("/bye/")
+        def bye():
+            return "Bye folks"
+
+Go to `http://localhost:5000/bye/` to see the message
+
+Note that there is a difference between
+
+@app.route("/bye/") and @app.route("/bye") the former will redirect people to the version with the trailing slash if they go to just /bye where as
+the later will just match for /bye. It doesn't matter which you use, but you should know there is a difference.
