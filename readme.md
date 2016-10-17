@@ -117,3 +117,19 @@ Lets just add a route like
                     "Mobile": 10
                 }
             })
+
+### Make it Remember
+
+Right now it always returns the same words. Lets give it the potential to change by adding
+
+     words = {}
+
+As a global variable and changing to
+
+        @app.route("/topics/")
+        def topics():
+            return jsonify({
+                "words": words
+            })
+
+
