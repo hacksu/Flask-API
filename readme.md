@@ -13,7 +13,7 @@ Then make a new directory and open it in your editor of choice.
 
 ## Steps
 
-## Hello Internet
+### Hello Internet
 
 Make a app.py file and put the following basically copied from Flask's main page in it
 
@@ -60,7 +60,7 @@ or similar.
 
 Go to http://127.0.0.1:5000/ to see our site.
 
-## Change the message
+### Change the message
 
 Change 
 
@@ -69,7 +69,7 @@ Change
 
 to return something else. Save the file and reload in the browser. The message in your browser should say whatever you put there.
 
-## Add another route.
+### Add another route.
 
 How do you think you'd add another route?
 
@@ -85,3 +85,17 @@ Note that there is a difference between
 
 @app.route("/bye/") and @app.route("/bye") the former will redirect people to the version with the trailing slash if they go to just /bye where as
 the later will just match for /bye. It doesn't matter which you use, but you should know there is a difference.
+
+### JSON
+
+Up to now we've just returned a HTML, To be honest you may not have realized it was HTML it certainly wasn't properly formatted HTML,
+but to your browser and critically anything else making http requests it was HTML. 
+
+JSON is a bit different, it stands for JavaScript Object Notation and is a text based way of representing a JavaScript class or really any class. It servers a similar purpose to
+XML, but to me is much easier to read and write. 
+
+
+Anyway, enough explenation, that all sounds good, how do we actually send it.
+
+Again flask makes it easy. We just need to make two changes. First add a `from flask import Jsonify` to the top of the file then inside a route replace the return with
+`jsonify({"message": "Hello Internet!"})`
