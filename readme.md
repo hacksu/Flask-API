@@ -127,7 +127,7 @@ Right now it always returns the same words. Lets give it the potential to change
 As a global variable and changing to
 
         @app.route("/topics/")
-        def topics():
+        def get_topics():
             return jsonify({
                 "topics": topics
             })
@@ -135,4 +135,14 @@ As a global variable and changing to
 
 ### Modify the words
 
-Right now we don't have any way to modify the w
+Right now we don't have any way to modify the topics. Lets add a route
+
+        @app.route("/topics/<topic>/")
+        def suggest(topic):
+            if topic in topics:
+                topics[topic] += 1
+            else:
+                topics[topic] = 1
+            return jsonify({
+                "topics": topics
+            })
