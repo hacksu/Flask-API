@@ -99,3 +99,21 @@ Anyway, enough explenation, that all sounds good, how do we actually send it.
 
 Again flask makes it easy. We just need to make two changes. First add a `from flask import Jsonify` to the top of the file then inside a route replace the return with
 `jsonify({"message": "Hello Internet!"})`
+
+### Practical Problem
+
+Everytime I talked about doing a survey, sami would say I really should make a world cloud of topic suggestions. My Googling skills weren't up to snuff though
+and I couldn't find a site to do it. We can make one though. Or at least the backend of one. We'll need a couple of routes.
+
+In partical we need a way of voting for a particlar topic and then a way of listing the topics people have voted on. Listing the topics is pretty easy
+Lets just add a route like
+
+        @app.route("/topics/")
+        def topics():
+            return jsonify({
+                "words": {
+                    "json": 4,
+                    "jokes": 1,
+                    "Mobile": 10
+                }
+            })
