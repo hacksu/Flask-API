@@ -5,7 +5,17 @@ app = Flask(__name__)
 topics = {}
 
 @app.route("/topics/")
-def topics():
+def get_topics():
+    return jsonify({
+        "topics": topics
+    })
+
+@app.route("/topics/<topic>/")
+def suggest(topic):
+    if topic in topics:
+        topics[topic] += 1
+    else:
+        topics[topic] = 1
     return jsonify({
         "topics": topics
     })
