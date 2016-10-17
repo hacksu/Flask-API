@@ -111,7 +111,7 @@ Lets just add a route like
         @app.route("/topics/")
         def topics():
             return jsonify({
-                "words": {
+                "topics": {
                     "json": 4,
                     "jokes": 1,
                     "Mobile": 10
@@ -122,14 +122,17 @@ Lets just add a route like
 
 Right now it always returns the same words. Lets give it the potential to change by adding
 
-     words = {}
+     topics = {}
 
 As a global variable and changing to
 
         @app.route("/topics/")
         def topics():
             return jsonify({
-                "words": words
+                "topics": topics
             })
 
 
+### Modify the words
+
+Right now we don't have any way to modify the w

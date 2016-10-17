@@ -2,12 +2,12 @@ from flask import Flask
 from flask import jsonify
 app = Flask(__name__)
 
-words = {}
+topics = {}
 
 @app.route("/topics/")
 def topics():
     return jsonify({
-        "words": words
+        "topics": topics
     })
 
 if __name__ == "__main__":
