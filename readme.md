@@ -133,7 +133,7 @@ As a global variable and changing to
             })
 
 
-### Modify the words
+### Modify the Topic
 
 Right now we don't have any way to modify the topics. Lets add a route
 
@@ -146,3 +146,5 @@ Right now we don't have any way to modify the topics. Lets add a route
             return jsonify({
                 "topics": topics
             })
+
+The `<` surround a wild card that anything can be put in for. Here we put in a topic
