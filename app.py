@@ -1,24 +1,42 @@
 from flask import Flask
 from flask import jsonify
+from peewee import *
+
+db = SqliteDatabase('test.db')
+
+class BaseModel(Model):
+    class Meta:
+        database = db
+
+class Topic(BaseModel):
+    name = CharField()
+    count = IntegerField()
+
+db.connect()
+db.create_tables([Topic], safe=True)
+
+
 app = Flask(__name__)
 
-topics = {}
 
 @app.route("/topics/")
 def get_topics():
-    return jsonify({
-        "topics": topics
-    })
+    topics = Topic.select()
+    result = {}
+    for topic in topics:
+        result[topic.name] = topic.count;
+    return jsonify({"topics": result})
 
-@app.route("/topics/<topic>/")
+@app.route("/topics/<topic>")
 def suggest(topic):
-    if topic in topics:
-        topics[topic] += 1
-    else:
-        topics[topic] = 1
-    return jsonify({
-        "topics": topics
-    })
+    try:
+        existing_topic = Topic.get(Topic.name==topic)
+        existing_topic.count += 1
+        existing_topic.save()
+    except(DoesNotExist):
+        new_topic = Topic(name=topic, count=1)
+        new_topic.save()
+    return ""
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
+app.run(debug=True)
